@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReportController;
 use App\Http\Middleware\Logging;
 use Illuminate\Support\Facades\Route;
 
@@ -15,11 +16,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function() {
+    return view('index');
+})->name('index');
+
+Route::get('report', function() {
+    return view('reports.index');
+})->name('reports.index');
+
+Route::get('report/user', [ReportController::class, 'users'])->name('reports.users.index');
+
+Route::get('report/product', [ReportController::class, 'products'])->name('reports.products.index');
+
+Route::get('report/user/{user}', [ReportController::class, 'showUser'])->name('reports.users.show');
+
+Route::get('report/product/{product}', [ReportController::class, 'showProduct'])->name('reports.products.show');
+
 Route::middleware([Logging::class])->group(function() {
-    Route::get('/', function() {
-        return redirect('/products');
-    });
-    
     Route::post('products/{product}/buy', [ProductController::class, 'buy'])
         ->name('products.buy');
     

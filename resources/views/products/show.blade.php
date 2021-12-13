@@ -10,5 +10,7 @@
         <button type="submit">Купить</button>
         <div>{{ session('status') }}</div>
     </form>
-    <a href={{ route('products.index') }}>Назад</a>
+    <p>
+        <a href={{ route('products.index') }}>Назад</a>
+    </p>
 </x-layout>
