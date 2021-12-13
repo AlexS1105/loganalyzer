@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Middleware\Logging;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('products', ProductController::class);
+Route::middleware([Logging::class])->group(function() {
+    Route::get('/', function() {
+        return redirect('/products');
+    });
+    
+    Route::post('products/{product}/buy', [ProductController::class, 'buy'])
+        ->name('products.buy');
+    
+    Route::resource('products', ProductController::class)
+        ->only(['index', 'show']);
+});
