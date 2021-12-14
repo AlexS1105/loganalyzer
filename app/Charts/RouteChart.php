@@ -9,32 +9,43 @@ use Chartisan\PHP\Chartisan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class Route extends ReportChart
+class RouteChart extends ReportChart
 {
+    protected function recommendations($data)
+    {
+        $recommendations = [];
+        arsort($data);
+
+        if (array_key_first($data) != "products.show") {
+            array_push($recommendations, "Мало посещений страницы с информацией. Возможно, её необходимо дополнить.");
+        }
+
+        if (array_key_first($data) != "products.review") {
+            array_push($recommendations, "Мало посещений страницы с обзорами. Возможно, необходимо добавить больше обзоров.");
+        }
+
+        return $recommendations;
+    }
+
     public function handler(Request $request): Chartisan
     {
         $productId = $request->get('product_id');
         $purchases = Log::where('product_id', $productId)
-            ->where('route', 'products.buy')
-            ->groupBy('date')
-            ->orderBy('date', 'ASC')
+            ->where('route', '!=', 'products.buy')
+            ->groupBy('route')
             ->get([
-                DB::raw('Date(created_at) as date'),
+                DB::raw('route'),
                 DB::raw('COUNT(*) as amount')
             ]);
         
-        $amounts = $purchases->pluck('amount', 'date')->all();
+        $amounts = $purchases->pluck('amount', 'route')->all();
 
-        $this->fillEmpty($amounts);
-        $forecast = $this->forecast($amounts);
-
-        $keys = array_keys(array_merge($amounts, $forecast));
+        $keys = array_keys($amounts);
         $values = array_values($amounts);
-        $forecastValues = array_merge(array_fill(0, count($values), 0), array_values($forecast));
 
         return Chartisan::build()
             ->labels($keys)
-            ->dataset('Продажи', $values)
-            ->dataset('Прогноз', $forecastValues);
+            ->extra($this->recommendations($amounts))
+            ->dataset('Посещения', $values);
     }
 }

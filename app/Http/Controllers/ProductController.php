@@ -25,4 +25,18 @@ class ProductController extends Controller
     {
         return back()->with('status', 'Приобретено!');
     }
+
+    public function opinion(Product $product)
+    {
+        return view('products.opinion', [
+            'product' => $product
+        ]);
+    }
+
+    public function review(Product $product)
+    {
+        return view('products.review', [
+            'product' => $product
+        ]);
+    }
 }

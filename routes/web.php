@@ -35,6 +35,12 @@ Route::get('report/product/{product}', [ReportController::class, 'showProduct'])
 Route::middleware([Logging::class])->group(function() {
     Route::post('products/{product}/buy', [ProductController::class, 'buy'])
         ->name('products.buy');
+
+    Route::get('products/{product}/opinion', [ProductController::class, 'opinion'])
+        ->name('products.opinion');
+
+    Route::get('products/{product}/review', [ProductController::class, 'review'])
+        ->name('products.review');
     
     Route::resource('products', ProductController::class)
         ->only(['index', 'show']);

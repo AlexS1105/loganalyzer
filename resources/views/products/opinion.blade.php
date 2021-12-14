@@ -16,4 +16,8 @@
         <a href={{ route('products.opinion', $product) }}>Отзывы</a>
         <a href={{ route('products.review', $product) }}>Обзоры</a>
     </p>
+    <div>
+        <h2>Отзывы</h2>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, reiciendis vel! Maiores et officia quas ullam perspiciatis, blanditiis atque? Aperiam provident, ratione non similique eos aut sint dolores corporis quidem!
+    </div>
 </x-layout>

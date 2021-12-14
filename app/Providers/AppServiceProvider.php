@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Charts\RouteChart;
+use App\Charts\SalesChart;
+use App\Charts\UserRouteChart;
+use App\Charts\UserSalesChart;
 use ConsoleTVs\Charts\Registrar as Charts;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,7 +29,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(Charts $charts)
     {
         $charts->register([
-            \App\Charts\SalesChart::class
+            SalesChart::class,
+            RouteChart::class,
+            UserSalesChart::class,
+            UserRouteChart::class
         ]);
     }
 }

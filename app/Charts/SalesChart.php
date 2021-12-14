@@ -11,6 +11,21 @@ use Illuminate\Support\Facades\DB;
 
 class SalesChart extends ReportChart
 {
+    protected function recommendations($data, $forecast)
+    {
+        $recommendations = [];
+        $sum = Log::where('route', 'products.buy')->groupBy('product_id')->get([DB::raw('COUNT(*) as amount')]);
+        $average = $sum->avg('amount');
+        $collection = collect($data);
+        $averageProduct = $collection->sum();
+
+        if ($averageProduct < $average) {
+            array_push($recommendations, 'Продажи товара ниже среднего. Возможно, необходимо дополнительное продвижение.');
+        }
+
+        return $recommendations;
+    }
+
     public function handler(Request $request): Chartisan
     {
         $productId = $request->get('product_id');
@@ -34,6 +49,7 @@ class SalesChart extends ReportChart
 
         return Chartisan::build()
             ->labels($keys)
+            ->extra($this->recommendations($amounts, $forecast))
             ->dataset('Продажи', $values)
             ->dataset('Прогноз', $forecastValues);
     }

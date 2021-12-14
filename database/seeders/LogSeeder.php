@@ -35,8 +35,14 @@ class LogSeeder extends Seeder
                 'updated_at' => $datetime
             ]);
 
+            $pages = [
+                'products.show',
+                'products.opinion',
+                'products.review'
+            ];
+
             $log = Log::create([
-                'route' => 'products.show',
+                'route' => $pages[array_rand($pages)],
                 'user_id' => $user->id,
                 'product_id' => $product->id,
                 'prev_log_id' => $log->id,
