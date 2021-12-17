@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace App\Charts;
+namespace Alexxx007\LogAnalyzer\Charts;
 
-use App\Models\Log;
+use Alexxx007\LogAnalyzer\Models\Log;
 use Chartisan\PHP\Chartisan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

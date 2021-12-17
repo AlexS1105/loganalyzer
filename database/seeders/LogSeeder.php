@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Log;
+use Alexxx007\LogAnalyzer\Models\Log;
 use App\Models\Product;
 use App\Models\User;
 use DateInterval;

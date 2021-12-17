@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
-use App\Http\Middleware\Logging;
+use Alexxx007\LogAnalyzer\Http\Middleware\Logging;
 use Illuminate\Support\Facades\Route;
 
 /*

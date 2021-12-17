@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Log;
+use Alexxx007\LogAnalyzer\Models\Log;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;

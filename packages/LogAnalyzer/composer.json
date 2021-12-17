@@ -1,0 +1,22 @@
+{
+    "name": "alexxx_007/log-analyzer",
+    "description": "Route logs analyzer utility",
+    "license": "MIT",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Alexxx007\\LogAnalyzer\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^7.3|^8.0",
+        "consoletvs/charts": "7.*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Alexxx007\\LogAnalyzer\\Providers\\LogAnalyzerServiceProvider"
+            ]
+        }
+    }
+}

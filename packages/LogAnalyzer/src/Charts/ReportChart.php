@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Charts;
+namespace Alexxx007\LogAnalyzer\Charts;
 
 use Chartisan\PHP\Chartisan;
 use ConsoleTVs\Charts\BaseChart;

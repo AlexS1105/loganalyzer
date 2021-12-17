@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Alexxx007\LogAnalyzer\Http\Middleware;
 
-use App\Models\Log;
+use Alexxx007\LogAnalyzer\Models\Log;
 use Closure;
 use Illuminate\Http\Request;
 

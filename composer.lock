@@ -4,8 +4,41 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5fa323609ed4c1742e612a2c6c87b59f",
+    "content-hash": "d298a8841af0fc5931f8a1609c2f6a9c",
     "packages": [
+        {
+            "name": "alexxx_007/log-analyzer",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./packages/LogAnalyzer",
+                "reference": "e492ded7263d35a9bfd3a5f19ec56a5fb7f3a339"
+            },
+            "require": {
+                "consoletvs/charts": "7.*",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Alexxx007\\LogAnalyzer\\Providers\\LogAnalyzerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Alexxx007\\LogAnalyzer\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Route logs analyzer utility",
+            "transport-options": {
+                "relative": true
+            }
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.3",
@@ -7980,7 +8013,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "alexxx_007/log-analyzer": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
