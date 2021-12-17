@@ -9,12 +9,13 @@ f = open(path + '/file.json', 'r')
 series = json.loads(f.read())
 f.close()
 
-model = pm.auto_arima(list(series.values()), start_p=1, start_q=1,
-                      test='adf',       # use adftest to find optimal 'd'
-                      max_p=3, max_q=3, # maximum p and q
-                      m=1,              # frequency of series
-                      d=None,           # let model determine 'd'
-                      seasonal=False,   # No Seasonality
+model = pm.auto_arima(list(series.values()),
+                      start_p=1, start_q=1,
+                      test='adf',
+                      max_p=3, max_q=3,
+                      m=1,
+                      d=None,
+                      seasonal=False,
                       start_P=0, 
                       D=0, 
                       trace=False,
