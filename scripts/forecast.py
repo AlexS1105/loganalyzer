@@ -2,8 +2,12 @@ import sys
 import json
 import matplotlib.pyplot as plt
 import pmdarima as pm
+import pathlib
+path = str(pathlib.Path(__file__).parent.resolve())
 
-series = json.loads(sys.argv[1])
+f = open(path + '/file.json', 'r')
+series = json.loads(f.read())
+f.close()
 
 model = pm.auto_arima(list(series.values()), start_p=1, start_q=1,
                       test='adf',       # use adftest to find optimal 'd'

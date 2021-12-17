@@ -39,7 +39,10 @@ class ReportChart extends BaseChart
     {
         $path = base_path().'\scripts\forecast.py';
         $json = json_encode($amounts);
-        $process = new Process(['python', $path, json_encode($amounts)]);
+        $fp = fopen(base_path().'\\scripts\\file.json', 'w');
+        fwrite($fp, $json);
+        fclose($fp);
+        $process = new Process(['python', $path]);
         $process->run();
         $output = $process->getOutput();
         $decoded = json_decode($output);
